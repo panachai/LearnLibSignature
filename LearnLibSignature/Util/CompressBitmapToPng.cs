@@ -8,11 +8,11 @@ using Xamarin.Controls;
 namespace LearnLibSignature {
 	public class CompressBitmapToPng {
 
-		private System.Drawing.PointF[] points;
+		//private System.Drawing.PointF[] points;
 
 
 		public CompressBitmapToPng CompressAndDecoded(int signatureView) {
-			var signature = FindViewById<SignaturePadView>(signatureView);
+			//var signature = FindViewById<SignaturePadView>(signatureView);
 
 
 
@@ -20,7 +20,7 @@ namespace LearnLibSignature {
 		}
 
 		public CompressBitmapToPng SaveSignature() {
-			points = signature.Points;
+			//points = signature.Points;
 			return this;
 		}
 
@@ -54,7 +54,7 @@ namespace LearnLibSignature {
 
 
 
-
+		/*
 		public CompressBitmapToPng CompressAndDecoded(Bitmap bitmap) {
 			Bitmap original = BitmapFactory.decodeStream(getAssets().open("1024x768.jpg"));
 			ByteArrayOutputStream out = new ByteArrayOutputStream();
@@ -66,7 +66,7 @@ namespace LearnLibSignature {
 
 			return this;
 		}
-
+*/
 
 
 		/*
