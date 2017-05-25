@@ -20,6 +20,7 @@ using Xamarin.Controls;
 using System.Net.Http;
 
 using Android.Graphics;
+using Android.Graphics.Drawables;
 
 namespace LearnLibSignature {
 	public class CustomViewSignature : RelativeLayout {
@@ -28,7 +29,6 @@ namespace LearnLibSignature {
 		private System.Drawing.PointF[] points;
 		SignaturePadView signature;
 		Context context;
-
 		//Properties
 		public string TextCaption {
 			get {
@@ -44,7 +44,6 @@ namespace LearnLibSignature {
 			}
 			set {
 				this.SetTextSizeCaption(value);
-
 			}
 		}
 		public string TextSignaturePrompt {
@@ -63,7 +62,6 @@ namespace LearnLibSignature {
 				this.SetTextSizeSignaturePrompt(value);
 			}
 		}
-
 		public Color BackgroundColor {
 			get {
 				return signature.BackgroundColor;
@@ -72,60 +70,45 @@ namespace LearnLibSignature {
 				this.SetBackgoundColor(value);
 			}
 		}
-
-		void SetBackgoundColor(Color value) {
-			signature.BackgroundColor = value;//Color.Rgb(255, 255, 200)
+		public Color StrokeColor {
+			get {
+				return signature.StrokeColor;
+			}
+			set {
+				this.SetStrokeColor(value);
+			}
 		}
+		public int BackgroundImageResource {
+			set {
+				this.SetImageResource(value);
+			}
 
-		/**
-		 * 
-signature.BackgroundColor = Color.Rgb(255, 255, 200); // a light yellow.
-		signature.StrokeColor = Color.Black;*/
-
-
-		void SetTextCaption(string txtValue) {
-			signature.Caption.Text = txtValue;
 		}
-
-		void SetTypeface(Typeface typeface, TypefaceStyle typefaceStyle) {
-			signature.Caption.SetTypeface(typeface, typefaceStyle);
+		public int BackgroundImageViewAlpha {
+			set {
+				this.SetBackgroundImageViewAlpha(value);
+			}
 		}
-
-		void SetTextSizeCaption(float size) {
-			signature.Caption.SetTextSize(global::Android.Util.ComplexUnitType.Sp, size);
+		public Boolean AdjustViewBounds {
+			set {
+				SetAdjustViewBounds(value);
+			}
 		}
-
-		void SetTextSignaturePrompt(string txtValuePrompt) {
-			signature.SignaturePrompt.Text = txtValuePrompt;
-		}
-
-		void SetSignaturePromptTypeface(Typeface typeface, TypefaceStyle typefaceStyle) {
-			signature.SignaturePrompt.SetTypeface(typeface, typefaceStyle);
-		}
-
-		void SetTextSizeSignaturePrompt(float value) {
-			signature.SignaturePrompt.SetTextSize(global::Android.Util.ComplexUnitType.Sp, value);
-		}
-
-
-
-
-		//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 		public CustomViewSignature(Context context) :
-					base(context) {
+							base(context) {
 			this.context = context;
 			Initialize();
 		}
 
 		public CustomViewSignature(Context context, IAttributeSet attrs) :
-			base(context, attrs) {
+					base(context, attrs) {
 			this.context = context;
 			Initialize();
 		}
 
 		public CustomViewSignature(Context context, IAttributeSet attrs, int defStyle) :
-			base(context, attrs, defStyle) {
+					base(context, attrs, defStyle) {
 			this.context = context;
 			Initialize();
 		}
@@ -136,35 +119,66 @@ signature.BackgroundColor = Color.Rgb(255, 255, 200); // a light yellow.
 
 			signature = FindViewById<SignaturePadView>(Resource.Id.signatureView);
 
-			TestSettingSignature();
-
 			SetBtnSaveAndLoad();
 		}
 
-		void TestSettingSignature() {
-			//signature.Caption.Text = "Authorization Signature";
-			//signature.Caption.SetTypeface(Typeface.Serif, TypefaceStyle.BoldItalic);
-			//signature.Caption.SetTextSize(global::Android.Util.ComplexUnitType.Sp, TextSize); //TextSize+
-			//signature.SignaturePrompt.Text = ">>";
-			//signature.SignaturePrompt.SetTypeface(Typeface.SansSerif, TypefaceStyle.Normal);
-			//signature.SignaturePrompt.SetTextSize(global::Android.Util.ComplexUnitType.Sp, 32f);
-			//signature.BackgroundColor = Color.Rgb(255, 255, 200); // a light yellow.
-			//signature.StrokeColor = Color.Black;
-
-			//signature.BackgroundImageView.SetImageResource(Resource.Drawable.logo_galaxy_black_64);
-			//signature.BackgroundImageView.SetAlpha(16);
-			//signature.BackgroundImageView.SetAdjustViewBounds(true);
-
-			//var layout = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MatchParent, ViewGroup.LayoutParams.MatchParent);
-			//layout.AddRule(LayoutRules.CenterInParent);
-			//layout.SetMargins(20, 20, 20, 20);
-			//signature.BackgroundImageView.LayoutParameters = layout;
-
-			//// You can change paddings for positioning...
-			//var caption = signature.Caption;
-			//caption.SetPadding(caption.PaddingLeft, 1, caption.PaddingRight, 25);
+		void SetTextCaption(string value) {
+			signature.Caption.Text = value;
+		}
+		public void SetTypeface(Typeface typeface, TypefaceStyle typefaceStyle) {
+			signature.Caption.SetTypeface(typeface, typefaceStyle);
+		}
+		void SetTextSizeCaption(float value) {
+			signature.Caption.SetTextSize(global::Android.Util.ComplexUnitType.Sp, value);
+		}
+		void SetTextSignaturePrompt(string value) {
+			signature.SignaturePrompt.Text = value;
+		}
+		public void SetSignaturePromptTypeface(Typeface typeface, TypefaceStyle typefaceStyle) {
+			signature.SignaturePrompt.SetTypeface(typeface, typefaceStyle);
+		}
+		void SetTextSizeSignaturePrompt(float value) {
+			signature.SignaturePrompt.SetTextSize(global::Android.Util.ComplexUnitType.Sp, value);
+		}
+		void SetBackgoundColor(Color value) {
+			signature.BackgroundColor = value;//Color.Rgb(255, 255, 200)
+		}
+		void SetStrokeColor(Color value) {
+			signature.StrokeColor = value;
+		}
+		void SetImageResource(int value) {
+			signature.BackgroundImageView.SetImageResource(value);
+		}
+		void SetBackgroundImageViewAlpha(int value) {
+			signature.BackgroundImageView.SetAlpha(value);
+		}
+		void SetAdjustViewBounds(Boolean value) {
+			signature.BackgroundImageView.SetAdjustViewBounds(value);
 		}
 
+		public void SetLayout() {
+			SetSignatureLayout(10, 10, 10, 10, LayoutRules.CenterInParent);
+		}
+		public void SetLayout(int top, int left, int right, int bottom) {
+			SetSignatureLayout(top, left, right, bottom, LayoutRules.CenterInParent);
+		}
+		public void SetLayout(int top, int left, int right, int bottom, LayoutRules layoutRules) {
+			SetSignatureLayout(top, left, right, bottom, layoutRules);
+		}
+		private void SetSignatureLayout(int left, int top, int right, int bottom, LayoutRules layoutRules) { //have override
+			var layout = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MatchParent, ViewGroup.LayoutParams.MatchParent);
+			layout.AddRule(layoutRules);
+			layout.SetMargins(left, top, right, bottom);
+			signature.BackgroundImageView.LayoutParameters = layout;
+		}
+
+		public void SetPadding(int left, int top, int right, int bottom) {
+			var caption = signature.Caption;
+			caption.SetPadding(left, top, right, bottom);
+		}
+
+
+		//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
 
