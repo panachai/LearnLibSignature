@@ -51,6 +51,8 @@
     <Reference Include="SignaturePad">
       <HintPath>..\packages\Xamarin.Controls.SignaturePad.2.0.0\lib\MonoAndroid\SignaturePad.dll</HintPath>
     </Reference>
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainActivity.cs" />
